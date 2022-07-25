@@ -56,6 +56,8 @@ router.post('/login', validateUser, async (req, res, next) => {
             return;
         }
 
+        req.session.loggedInUser = result;
+
         res.json({ message: `You are now logged in, ${username}` });
     } catch(err) {
         next(err);
