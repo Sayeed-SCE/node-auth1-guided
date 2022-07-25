@@ -3,12 +3,10 @@ const router = require("express").Router()
 const Users = require("./users-model.js")
 
 router.get("/", (req, res, next) => {
-  // if(userIsNotLoggedIn) {
-  //   next({ message: 'You must be logged in!' });
-  //   return;
-  // }
-
-  console.log(req.session.loggedInUser);
+  if(req.session.loggedInUser == null) {
+    next({ message: 'You must be logged in!' });
+    return;
+  }
 
   Users.find()
     .then(users => {
