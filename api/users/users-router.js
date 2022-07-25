@@ -4,7 +4,7 @@ const Users = require("./users-model.js")
 
 router.get("/", (req, res, next) => {
   if(req.session.loggedInUser == null) {
-    next({ message: 'You must be logged in!' });
+    next({ status: 400, message: 'You must be logged in!' });
     return;
   }
 
