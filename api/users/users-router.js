@@ -9,8 +9,6 @@ router.get("/", (req, res, next) => {
   //   return;
   // }
 
-  req.session.newData = 123;
-
   Users.find()
     .then(users => {
       res.status(200).json(users)
