@@ -15,7 +15,18 @@ router.post('/register', async (req, res, next) => {
     res.status(201).json({ message: `You are now registered, ${username}!` });
 });
 
-// /login
+router.post('/login', async (req, res, next) => {
+    const { username, password } = req.body;
+
+    const result = Users.findBy({ username });
+    
+    if(!bcrypt.compareSync(password, result.password)) {
+        res.status(401).json({ message: 'invalid credentials' });
+        return;
+    }
+
+    res.json({ message: `You are now logged in, ${username}` });
+});
 
 // /logout
 
